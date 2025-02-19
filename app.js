@@ -31,7 +31,7 @@ function renderChat() {
       <h2>Chat</h2>
       <div class="chat-container" id="chat-container"></div>
       <div class="chat-input-container">
-        <input type="text" id="message-input" placeholder="Type a message" onkeyup="handleTyping(event)" />
+        <textarea id="message-input" placeholder="Type a message"></textarea>
         <button onclick="sendMessage()">Send</button>
       </div>
     </div>
@@ -68,12 +68,6 @@ function sendMessage() {
   chatContainer.appendChild(messageElement);
   messageInput.value = '';
   chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-
-function handleTyping(event) {
-  if (event.key === 'Enter') {
-    sendMessage();
-  }
 }
 
 renderLogin();
