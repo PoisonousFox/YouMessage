@@ -53,6 +53,11 @@ button:hover {
   background-color: #e9ecef;
 }
 
+.message .sender {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
