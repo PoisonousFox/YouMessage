@@ -1,4 +1,5 @@
 const root = document.getElementById('root');
+let currentUser = null;
 
 function renderLogin() {
   root.innerHTML = `
@@ -30,7 +31,7 @@ function renderChat() {
       <h2>Chat</h2>
       <div class="chat-container" id="chat-container"></div>
       <div class="chat-input-container">
-        <input type="text" id="message-input" placeholder="Type a message" />
+        <input type="text" id="message-input" placeholder="Type a message" onkeyup="handleTyping(event)" />
         <button onclick="sendMessage()">Send</button>
       </div>
     </div>
@@ -40,26 +41,39 @@ function renderChat() {
 function login() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  // Add authentication logic here
-  renderChat();
+  // Fake authentication logic for demonstration
+  if (username && password) {
+    currentUser = username;
+    renderChat();
+  }
 }
 
 function register() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  // Add registration logic here
-  renderChat();
+  // Fake registration logic for demonstration
+  if (username && password) {
+    currentUser = username;
+    renderChat();
+  }
 }
 
 function sendMessage() {
-  const message = document.getElementById('message-input').value;
+  const messageInput = document.getElementById('message-input');
+  const message = messageInput.value;
   const chatContainer = document.getElementById('chat-container');
   const messageElement = document.createElement('div');
   messageElement.className = 'message';
-  messageElement.textContent = message;
+  messageElement.innerHTML = `<div class="sender">${currentUser}</div>${message}`;
   chatContainer.appendChild(messageElement);
-  document.getElementById('message-input').value = '';
+  messageInput.value = '';
   chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function handleTyping(event) {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
 }
 
 renderLogin();
